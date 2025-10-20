@@ -1,0 +1,178 @@
+<!-- © 2025 Ricardo Alonso Mendiola — MIT License -->
+
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Imports externos -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" 
+      href="https://cdn.jsdelivr.net/gh/tmluc-neginversion/ram-mini-framework@v1.0.0/dist/style.css"
+      integrity="sha384-9Cl+rxCwoV/nQwu7qVwsg0YGlhY9PN8x/9bMm7M8BDuvdyjXizsEEyiO5IKMaXNt" crossorigin="anonymous">
+    <script 
+      src="https://cdn.jsdelivr.net/gh/tmluc-neginversion/ram-mini-framework@v1.0.0/dist/script.js"
+      integrity="sha384-mp194EqjrrrOpHuJ/aamtO319kE95PUsvE34+cARKZVeinCahHNqxqWe/rm302kK" crossorigin="anonymous"></script>
+
+    <!-- Imports internos -->
+    <script src="src/test.js"></script>
+  </head>
+  <body>
+    
+    <!-- SECCIÓN DEL HEADER -->
+    <header id="header">
+      <h1>TÍTULO DE LA PÁGINA WEB</h1>  
+    </header>
+
+    <!-- SECCIÓN DE LA DESCRIPCIÓN -->
+    <section id="section">
+        <p><b>Instrucciones</b>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et magna et nisi aliquam dictum.
+        <b style="color: #00bb00;">Praesent finibus nibh</b> et metus vulputate bibendum ac nec purus. Nam ipsum lacus, sollicitudin
+        ut luctus in, tempor sit amet ante. Maecenas eros enim, tincidunt in tincidunt ac, rutrum
+        vitae metus. Ut dolor dolor, viverra nec tempus eget, tincidunt eget diam.</p>
+    </section>
+
+    <!-- SECCIÓN PRINCIPAL DEL FORMS -->
+    <form id="app-script-forms" onsubmit="return false;">
+
+      <!-- PÁGINA 1 DEL FORMS-->
+      <div id="page-1" class="forms-page">
+        <h2>SECCIÓN DEL FORMS 1</h2>
+        <div class="forms-section">
+          <label for="ff-input-1">ETIQUETA FECHA</label>
+          <input type="date" id="ff-input-1" onchange="">
+
+          <label for="ff-select-1">ETIQUETA SELECT</label>
+          <select id="ff-select-1" onchange="removePlaceholder(this)">
+          </select>
+        </div>
+
+        <h2>SECCIÓN DEL FORMS 2</h2>
+        <div class="forms-section">
+          <label for="ff-input-2">ETIQUETA NUMERO</label>
+          <input type="number" id="ff-input-2" value="1" onchange="">
+
+          <label for="ff-input-3">ETIQUETA TEXTO</label>
+          <input type="text" id="ff-input-3" onchange=""/>
+        </div>
+
+        <!-- SECCIÓN DE CONTROL -->
+        <div class="control-section-grid">
+          <div>
+            <!-- Empty -->
+          </div>
+          <div>
+            <button type="button" onclick="nextPage(1,2)">Siguiente ➡️</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- PÁGINA 2 DEL FORMS-->
+      <div id="page-2" class="forms-page">
+        <h2>SECCIÓN DEL FORMS 3</h2>
+        <div class="forms-section">
+          <label for="ff-textarea-1">ETIQUETA AREA</label>
+          <textarea id="ff-textarea-1" onchange=""></textarea>
+        </div>
+
+        <h2>SECCIÓN DEL FORMS 4</h2>
+        <div class="forms-section">
+          <label for="ff-input-4">ETIQUETA ARCHIVO</label>
+          <input type="file" id="ff-input-4" accept=".pdf,image/*" onchange="">
+          
+          <div class="forms-comment">
+            <p class="forms-comment-label">SUBETIQUETA 1:</p>
+            <p class="forms-comment-text">VALOR 1</p>
+            <p class="forms-comment-label">SUBETIQUETA 2:</p>
+            <p class="forms-comment-text">VALOR 2</p>
+            <p class="forms-comment-label">SUBETIQUETA 3:</p>
+            <p class="forms-comment-text">VALOR DE PRUEBA DE UN TEXTO MUY MUY LARGO 1</p>
+          </div>
+        </div>
+
+        <!-- SECCIÓN DE CONTROL -->
+        <div class="control-section-grid">
+          <div>
+            <button type="button" onclick="nextPage(2,1)">⬅️ Anterior</button>
+          </div>
+          <div>
+            <button type="button" onclick="nextPage(2,3)">Siguiente ➡️</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- PÁGINA 3 DEL FORMS-->
+      <div id="page-3" class="forms-page">
+        <h2>SECCIÓN DEL FORMS 5</h2>
+        <div class="forms-section">
+          <div class="h-scroll-anchor">
+            <table class="h-scroll-table">
+              <thead id="tb-head">
+                <!-- Header will be added here -->
+              </thead>
+              <tbody id="tb-body">
+                  <!-- Rows will be added here -->
+              </tbody>
+            </table>
+          </div>
+          <button type="button" onclick="addRow('tb-body','row-template')">➕ Agregar línea</button>
+          <p style="display: block; text-align: right; margin: 15px 5px;"><b id="test-b">TOTAL:</b></p>
+        </div>
+
+        <!-- SECCIÓN DE CONTROL -->
+        <div class="control-section-grid">
+          <div>
+            <button type="button" onclick="nextPage(3,2)">⬅️ Anterior</button>
+          </div>
+          <div>
+            <button type="button" onclick="">Enviar 🚀</button>
+          </div>
+        </div>
+      </div>
+
+    </form>
+
+    <!-- IMPORT DE TEMPLATES -->
+    <template id="head-template">
+      <tr>
+        <th>HEADER1</th>
+        <th>HEADER2</th>
+        <th>HEADER3</th>
+        <th>HEADER4<br><p style="font-size:0.6rem; text-align: center;">(por caja)</p></th>
+        <th>HEADER5</th>
+        <th>🗑</th>
+      </tr>
+    </template>
+
+    <template id="row-template">
+      <tr>
+        <td><select onchange="">
+          <option value="">-- selecciona --</option>
+          <option value="pen">Pen</option>
+          <option value="pineapple">Pinepple</option>
+          <option value="apple">Apple</option>
+          <option value="penn">Pen</option>
+        </select></td>
+        <td><select onchange="">
+          <option value="">-- selecciona --</option>
+          <option value="pen">Pen</option>
+          <option value="pineapple">Pinepple</option>
+          <option value="apple">Apple</option>
+          <option value="penn">Pen</option>
+        </select></td>
+        <td><select onchange="">
+          <option value="">-- selecciona --</option>
+          <option value="pen">Pen</option>
+          <option value="pineapple">Pinepple</option>
+          <option value="apple">Apple</option>
+          <option value="penn">Pen</option>
+        </select></td>
+        <td><input type="number" onchange="testSuma(this)" class="test_num"/></td>
+        <td><input type="text" onchange=""/></td>
+        <td><button type="button" class="row-delete">❌</button></td>
+      </tr>
+    </template>
+  </body>
+</html>
