@@ -1,5 +1,3 @@
-/* © 2025 Ricardo Alonso Mendiola — MIT License */
-
 /* ================================================== */
 /* ======== FUNCIÓN PARA CARGAR EL FRAMEWORK ======== */
 /* ================================================== */
@@ -7,7 +5,49 @@
 // Función para preparar la página web al momento de cargar
 async function frameworkOnLoad () {
   selectPage(document.getElementById('page-1'));
+
+  await importDependency({
+    name: 'SweetAlert2',
+    js: 'https://cdn.jsdelivr.net/npm/sweetalert2@11'
+  });
+
+  await importDependency({
+    name: 'SlimSelect',
+    css: 'https://cdn.jsdelivr.net/npm/slim-select@2/dist/slimselect.css',
+    js: 'https://cdn.jsdelivr.net/npm/slim-select@2/dist/slimselect.min.js'
+  });
 }
+
+/* ================================================== */
+/* ========= PAQUETES DE ELEMENTOS EXTERNOS ========= */
+/* ================================================== */
+
+// Función para cargar dependencias externas CSS o JS
+async function importDependency({ name, css, js }) {
+  // Cargar el CSS si no está presente en el HTML
+  if (css && !document.querySelector(`link[href*="${css}"]`)) {
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = css;
+    document.head.appendChild(link);
+  }
+
+  // Cargar el JS si no está presente en el HTML
+  if (js && !document.querySelector(`script[src*="${js}"]`)) {
+    await new Promise((resolve, reject) => {
+      const script = document.createElement('script');
+      script.src = js;
+      script.async = true;
+      script.onload = resolve;
+      script.onerror = () => reject(new Error(`❌ Failed to load ${name}!`));
+      document.head.appendChild(script);
+    });
+  }
+
+  console.log(`✅ ${name} loaded!`);
+  return true;
+}
+
 
 /* ================================================== */
 /* ============= FUNCIONES DE NAVEGACIÓN ============ */
@@ -32,16 +72,7 @@ async function nextPage(current, target, alerts_on = true) {
 
   if(alerts_on) {
     if(target > current) {
-      let allFilled = true;
-            
-      current_page.querySelectorAll('input, select, textarea').forEach(input => {
-        if (!input.value) {
-          input.style.border = '2px solid red';
-          allFilled = false;
-        } else { myBorder(input); }
-      });
-
-      if (!allFilled) {
+      if (!checkInputs(current_page)) {
         await Swal.fire({
           title: '⚠️ Atención',
           text: 'Por favor, completa todos los campos antes de continuar.',
@@ -67,35 +98,76 @@ async function nextPage(current, target, alerts_on = true) {
   selectPage(target_page);
 }
 
+// Función para válidar si todos los posibles inputs dentro de un elemento tienen valores válidos
+function checkInputs(element) {
+  let allFilled = true;
+  element.querySelectorAll('input, select, textarea').forEach(input => {
+    let targetInput = input;
+    if (input instanceof HTMLSelectElement) targetInput = input.closest('.custom-select');
+    if (!targetInput) targetInput = input;
+    if (!input.value) {
+      targetInput.style.border = '2px solid red';
+      allFilled = false;
+    } else { myBorder(targetInput); }
+  });
+  return allFilled;
+}
+
 /* ================================================== */
 /* ============ FUNCIONES PARA LOS SELECT =========== */
 /* ================================================== */
 
 // Función para llenar las opciones de un SELECT
-function fillSelect(select, items, order=false) {
-  select.innerHTML = "<option value=''>-- SELECCIONA --</option>";
+function fillSelect(select, items, indexed=false, order=false) {
+  let data = items.map(i => (typeof i === 'string' ? { value: i, text: i } : i));
 
-  if(order) { items.sort((a, b) => a.localeCompare(b, "es", { numeric: true })); }
+  if(order) { data.sort((a, b) => a.text.localeCompare(b.text, 'es', { numeric: true })); }
 
-  items.forEach(item => {
-    const option = document.createElement("option");
-    option.value = item;
-    option.text = item;
-    select.appendChild(option);
-  });
+  if (indexed) {
+    if (!select.slim) {
+      select.slim = new SlimSelect({
+        select,
+        settings: {
+          allowDeselect: true,  
+          searchHighlight: true,
+          searchPlaceholder: 'Busca…',
+          searchText: 'No hay resultados',
+          searchingText: 'Buscando…',
+          placeholderText: '-- Selecciona --'
+        }
+      });
+    }
+
+    select.slim.setData(data);
+
+    if (!select.multiple) {
+      select.selectedIndex = -1;
+      select.slim.setSelected();
+    } else { select.slim.setSelected([]); }
+  } else {
+    select.innerHTML = "<option value=''>-- Selecciona --</option>";
+    data.forEach(option => {
+      const opt = document.createElement("option");
+      opt.value = option.value;
+      opt.text = option.text;
+      select.appendChild(opt);
+    });
+  }
 }
 
 // Función para limpiar una lista [ARRAY] de SELECT
-function clearSelects(elements, filler) {
-  elements.forEach(element => {
-    element.innerHTML = "<option value=''>-- " + filler + " --</option>";
-  });
-}
+function clearSelects(elements, message) {
+  elements.forEach(select => {
+    select.innerHTML = '';
 
-// Función para eliminar la opción vacía de un SELECT
-function removePlaceholder (select) {
-  select.querySelectorAll('option').forEach(option => {
-    if (option.value === '') option.remove();
+    if (select.slim) {
+      console.log(select.slim)
+      select.slim.setData([]);
+      select.slim.settings.placeholderText = message.toUpperCase();
+      select.slim.setSelected();
+    } else {
+      select.innerHTML = "<option value=''>" + message + "</option>";
+    }
   });
 }
 
