@@ -7,16 +7,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!-- Imports externos -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" 
-      href="https://cdn.jsdelivr.net/gh/tmluc-neginversion/ram-mini-framework@v1.0.0/dist/style.css"
-      integrity="sha384-9Cl+rxCwoV/nQwu7qVwsg0YGlhY9PN8x/9bMm7M8BDuvdyjXizsEEyiO5IKMaXNt" crossorigin="anonymous">
-    <script 
-      src="https://cdn.jsdelivr.net/gh/tmluc-neginversion/ram-mini-framework@v1.0.0/dist/script.js"
-      integrity="sha384-mp194EqjrrrOpHuJ/aamtO319kE95PUsvE34+cARKZVeinCahHNqxqWe/rm302kK" crossorigin="anonymous"></script>
+      href="https://cdn.jsdelivr.net/gh/tmluc-neginversion/ram-mini-framework@v1.1.0/dist/style.css"
+      integrity="sha384-kNhph+92VbzEnrpQ1cip4/kdU4ciK+BMxOQRzLEhEfZ0j/IMgnviAb+CX8ZOsfBp" crossorigin="anonymous">
+    <script
+      src="https://cdn.jsdelivr.net/gh/tmluc-neginversion/ram-mini-framework@v1.1.0/dist/script.js"
+      integrity="sha384-M9T5LviBZRnrRX/pJx7eSQK10png0VUDiqZ8DX/497WDtRzH35+Ad68NA/HU3aZz" crossorigin="anonymous"></script>
+    
 
     <!-- Imports internos -->
-    <script src="src/test.js"></script>
+    <script src="assets/js/test.js"></script>
   </head>
   <body>
     
@@ -45,8 +45,7 @@
           <input type="date" id="ff-input-1" onchange="">
 
           <label for="ff-select-1">ETIQUETA SELECT</label>
-          <select id="ff-select-1" onchange="removePlaceholder(this)">
-          </select>
+          <div class="custom-select"><select id="ff-select-1" onchange=""></select></div>
         </div>
 
         <h2>SECCIÓN DEL FORMS 2</h2>
@@ -148,27 +147,9 @@
 
     <template id="row-template">
       <tr>
-        <td><select onchange="">
-          <option value="">-- selecciona --</option>
-          <option value="pen">Pen</option>
-          <option value="pineapple">Pinepple</option>
-          <option value="apple">Apple</option>
-          <option value="penn">Pen</option>
-        </select></td>
-        <td><select onchange="">
-          <option value="">-- selecciona --</option>
-          <option value="pen">Pen</option>
-          <option value="pineapple">Pinepple</option>
-          <option value="apple">Apple</option>
-          <option value="penn">Pen</option>
-        </select></td>
-        <td><select onchange="">
-          <option value="">-- selecciona --</option>
-          <option value="pen">Pen</option>
-          <option value="pineapple">Pinepple</option>
-          <option value="apple">Apple</option>
-          <option value="penn">Pen</option>
-        </select></td>
+        <td><select class="ts-1" onchange=""></select></td>
+        <td><select class="ts-2" onchange=""></select></td>
+        <td><select class="ts-3" onchange=""></select></td>
         <td><input type="number" onchange="testSuma(this)" class="test_num"/></td>
         <td><input type="text" onchange=""/></td>
         <td><button type="button" class="row-delete">❌</button></td>
