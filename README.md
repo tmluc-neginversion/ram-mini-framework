@@ -13,14 +13,14 @@ Puedes integrar el framework directamente desde **jsDelivr** usando las siguient
 <!-- CSS -->
 <link 
   rel="stylesheet" 
-  href="https://cdn.jsdelivr.net/gh/tmluc-neginversion/ram-mini-framework@v1.0.0/dist/style.css">
+  href="https://cdn.jsdelivr.net/gh/tmluc-neginversion/ram-mini-framework@v1.1.0/dist/style.css">
 
 <!-- JS -->
 <script 
-  src="https://cdn.jsdelivr.net/gh/tmluc-neginversion/ram-mini-framework@v1.0.0/dist/script.js"></script>
+  src="https://cdn.jsdelivr.net/gh/tmluc-neginversion/ram-mini-framework@v1.1.0/dist/script.js"></script>
 ```
 
-📌 **Consejo:** Siempre especifica la versión (`@v1.0.0`) en el enlace para evitar que cambios futuros rompan tu proyecto.
+📌 **Consejo:** Siempre especifica la versión (`@v1.1.0`) en el enlace para evitar que cambios futuros rompan tu proyecto.
 
 ---
 
@@ -29,17 +29,17 @@ Puedes integrar el framework directamente desde **jsDelivr** usando las siguient
 Para validar la integridad de los archivos utiliza la válidación **Subresource Integrity (SRI)**.  
 Esto añade una capa adicional de seguridad a tu aplicación.
 
-Los hashes de la versión `v1.0.0` fueron generados en:  
+Los hashes de la versión `v1.1.0` fueron generados en:  
 👉 [https://www.srihash.org/](https://www.srihash.org/)
 
 **CSS**
 ```
-sha384-9Cl+rxCwoV/nQwu7qVwsg0YGlhY9PN8x/9bMm7M8BDuvdyjXizsEEyiO5IKMaXNt
+sha384-kNhph+92VbzEnrpQ1cip4/kdU4ciK+BMxOQRzLEhEfZ0j/IMgnviAb+CX8ZOsfBp
 ```
 
 **JS**
 ```
-sha384-mp194EqjrrrOpHuJ/aamtO319kE95PUsvE34+cARKZVeinCahHNqxqWe/rm302kK
+sha384-M9T5LviBZRnrRX/pJx7eSQK10png0VUDiqZ8DX/497WDtRzH35+Ad68NA/HU3aZz
 ```
 
 **Ejemplo de uso con SRI:**
@@ -47,13 +47,13 @@ sha384-mp194EqjrrrOpHuJ/aamtO319kE95PUsvE34+cARKZVeinCahHNqxqWe/rm302kK
 ```html
 <link 
   rel="stylesheet" 
-  href="https://cdn.jsdelivr.net/gh/tmluc-neginversion/ram-mini-framework@v1.0.0/dist/style.css"
-  integrity="sha384-9Cl+rxCwoV/nQwu7qVwsg0YGlhY9PN8x/9bMm7M8BDuvdyjXizsEEyiO5IKMaXNt"
+  href="https://cdn.jsdelivr.net/gh/tmluc-neginversion/ram-mini-framework@v1.1.0/dist/style.css"
+  integrity="sha384-kNhph+92VbzEnrpQ1cip4/kdU4ciK+BMxOQRzLEhEfZ0j/IMgnviAb+CX8ZOsfBp"
   crossorigin="anonymous">
 
 <script 
-  src="https://cdn.jsdelivr.net/gh/tmluc-neginversion/ram-mini-framework@v1.0.0/dist/script.js"
-  integrity="sha384-mp194EqjrrrOpHuJ/aamtO319kE95PUsvE34+cARKZVeinCahHNqxqWe/rm302kK"
+  src="https://cdn.jsdelivr.net/gh/tmluc-neginversion/ram-mini-framework@v1.1.0/dist/script.js"
+  integrity="sha384-M9T5LviBZRnrRX/pJx7eSQK10png0VUDiqZ8DX/497WDtRzH35+Ad68NA/HU3aZz"
   crossorigin="anonymous"></script>
 ```
 
@@ -66,6 +66,10 @@ ram-mini-framework/
 ├─ dist/              # Archivos listos para producción (versión final)
 │  ├─ style.css
 │  └─ script.js
+└─ example/           # Archivos de ejemplo de uso
+│  ├─ index.html
+│  └─ src/
+│     └─ test.js
 └─ src/               # Archivos fuente originales (opcional)
    ├─ style.css
    └─ script.js
@@ -73,6 +77,32 @@ ram-mini-framework/
 
 - **src/**: versión editable del código.  
 - **dist/**: versión final publicada y optimizada para uso en producción.
+- **example/**: ejemplo de uso del framework.  
+
+---
+
+## ⚙️ Minificadores Utilizados
+
+Para reducir el tamaño de los archivos en producción, se emplearon los siguientes minificadores en línea:
+
+| Tipo | Herramienta | Enlace |
+|------|--------------|--------|
+| **CSS** | CSS Minifier (Toptal) | [https://www.toptal.com/developers/cssminifier](https://www.toptal.com/developers/cssminifier) |
+| **JavaScript** | JavaScript Minifier (Toptal) | [https://www.toptal.com/developers/javascript-minifier](https://www.toptal.com/developers/javascript-minifier) |
+
+Los archivos minificados generados son los que se encuentran en la carpeta `/dist` utilizados para la versión pública.
+
+---
+
+## 📦 Dependencias
+
+Este proyecto utiliza las siguientes librerías de terceros:
+
+- SweetAlert2 (MIT License)  
+  https://sweetalert2.github.io  
+
+- Slim-Select (MIT License)  
+  https://slimselectjs.com 
 
 ---
 
