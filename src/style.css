@@ -1,5 +1,3 @@
-/* © 2025 Ricardo Alonso Mendiola — MIT License */
-
 /* ================================================== */
 /* ======= Ajustes generales para consistencia ====== */
 /* ================================================== */
@@ -32,13 +30,13 @@ h3 { font-size: 1.2rem; }
 
 label{ display: block; font-size: 1.2rem; font-weight: 600; }
 
-p, b, select, input, button, a, textarea { font-size: 1rem; background: inherit; color: inherit; text-decoration: none; line-height: inherit;}
+p, b, select, input, button, a, textarea, .custom-select { font-size: 1rem; background: inherit; color: inherit; text-decoration: none; line-height: inherit;}
 
 p { text-align: justify; }
 
-select, input, button, textarea { font-size: 1rem; inline-size: 100%; border: 2px solid var(--c-text); border-radius: 5px; background: white; padding: 5px; margin: 10px 0; }
+select, input, button, textarea { font-size: 1rem; inline-size: 100%; border: 2px solid var(--c-text);  border-radius: 5px; background: white; padding: 5px; margin: 10px 0; }
 
-select:focus-visible, input:focus-visible, button:focus-visible, textarea:focus-visible { outline: 2px solid color-mix(in oklab, var(--c-tmluc) 80%, white); outline-offset: 1.5px; }
+select:focus-visible, input:focus-visible, button:focus-visible, textarea:focus-visible, .ss-main:focus-visible { outline: 2px solid color-mix(in oklab, var(--c-tmluc) 80%, white); outline-offset: 1.5px; }
 
 button:disabled { cursor: not-allowed; opacity: 0.42; }
 
@@ -56,6 +54,8 @@ td { padding: 5px 10px; }
 /* ================================================== */
 /* ======== Formato de secciones especificas ======== */
 /* ================================================== */
+
+.custom-select { font-size: 1rem; inline-size: 100%; border: 2px solid var(--c-text);  border-radius: 5px; background: white; margin: 10px 0; }
 
 .forms-page { padding: 10px; background-color: white; border-radius: 15px; border: 2px solid var(--c-text) ; box-shadow: 0 0 5px var(--c-shadow); }
 
