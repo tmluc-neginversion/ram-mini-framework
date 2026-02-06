@@ -1,6 +1,6 @@
 # 🧰 RAM MINI FRAMEWORK
 
-Pequeño framework en **CSS** y **JavaScript** diseñado para ser utilizado en aplicaciones web ligeras (por ejemplo, en HTML Apps de Google Apps Script).  
+Framework de **CSS** y **JavaScript** diseñado para ser utilizado en aplicaciones web ligeras (por ejemplo, en Apps HTML de Google Apps Script).  
 Incluye funciones de navegación, manipulación de formularios y tablas, así como estilos básicos para componentes comunes.
 
 ---
@@ -13,48 +13,52 @@ Puedes integrar el framework directamente desde **jsDelivr** usando las siguient
 <!-- CSS -->
 <link 
   rel="stylesheet" 
-  href="https://cdn.jsdelivr.net/gh/tmluc-neginversion/ram-mini-framework@v1.1.0/dist/style.css">
+  href="https://cdn.jsdelivr.net/gh/tmluc-neginversion/ram-mini-framework@v1.2.0/dist/style.css"
+  crossorigin="anonymous">
 
 <!-- JS -->
-<script 
-  src="https://cdn.jsdelivr.net/gh/tmluc-neginversion/ram-mini-framework@v1.1.0/dist/script.js"></script>
+<script
+  type="module"
+  src="https://cdn.jsdelivr.net/gh/tmluc-neginversion/ram-mini-framework@v1.2.0/dist/script.mjs"
+  crossorigin="anonymous">
+</script>
 ```
 
-📌 **Consejo:** Siempre especifica la versión (`@v1.1.0`) en el enlace para evitar que cambios futuros rompan tu proyecto.
+📌 **Consejo:** Siempre especifica la versión (Actual: `@v1.2.0`) en el enlace para evitar que cambios futuros rompan el proyecto.
 
 ---
 
 ## 🔐 Integridad (SRI)
 
 Para validar la integridad de los archivos utiliza la válidación **Subresource Integrity (SRI)**.  
-Esto añade una capa adicional de seguridad a tu aplicación.
+Esto añade una capa adicional de seguridad a la aplicación.
 
-Los hashes de la versión `v1.1.0` fueron generados en:  
+Los hashes (SHA384) de la versión `v1.2.0` fueron generados en:  
 👉 [https://www.srihash.org/](https://www.srihash.org/)
 
 **CSS**
 ```
-sha384-kNhph+92VbzEnrpQ1cip4/kdU4ciK+BMxOQRzLEhEfZ0j/IMgnviAb+CX8ZOsfBp
+sha384-7V7EhW6XFI+HJV4fm2lAHiVOJF84vAzL5WGj2XT9q/lc3KgrbpxyLO+8C/7REmoc
 ```
 
 **JS**
 ```
-sha384-M9T5LviBZRnrRX/pJx7eSQK10png0VUDiqZ8DX/497WDtRzH35+Ad68NA/HU3aZz
+sha384-zI9If6THONdnKxnsBOnD6DCPFOtSs0YcsFkjUfNSkuDPJdUm4ELyZhAwwBpyxVRY
 ```
 
 **Ejemplo de uso con SRI:**
 
 ```html
-<link 
-  rel="stylesheet" 
-  href="https://cdn.jsdelivr.net/gh/tmluc-neginversion/ram-mini-framework@v1.1.0/dist/style.css"
-  integrity="sha384-kNhph+92VbzEnrpQ1cip4/kdU4ciK+BMxOQRzLEhEfZ0j/IMgnviAb+CX8ZOsfBp"
+<link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/gh/tmluc-neginversion/ram-mini-framework@v1.2.0/dist/style.css"
+  integrity="sha384-7V7EhW6XFI+HJV4fm2lAHiVOJF84vAzL5WGj2XT9q/lc3KgrbpxyLO+8C/7REmoc"
   crossorigin="anonymous">
 
-<script 
-  src="https://cdn.jsdelivr.net/gh/tmluc-neginversion/ram-mini-framework@v1.1.0/dist/script.js"
-  integrity="sha384-M9T5LviBZRnrRX/pJx7eSQK10png0VUDiqZ8DX/497WDtRzH35+Ad68NA/HU3aZz"
-  crossorigin="anonymous"></script>
+<script type="module"
+  src="https://cdn.jsdelivr.net/gh/tmluc-neginversion/ram-mini-framework@v1.2.0/dist/script.mjs"
+  integrity="sha384-zI9If6THONdnKxnsBOnD6DCPFOtSs0YcsFkjUfNSkuDPJdUm4ELyZhAwwBpyxVRY"
+  crossorigin="anonymous">
+</script>
 ```
 
 ---
@@ -83,12 +87,48 @@ ram-mini-framework/
 
 ## ⚙️ Minificadores Utilizados
 
-Para reducir el tamaño de los archivos en producción, se emplearon los siguientes minificadores en línea:
+Para manejar los módulos y "minificar" el código se uso Vite, con las siguientes configuraciones:
 
-| Tipo | Herramienta | Enlace |
-|------|--------------|--------|
-| **CSS** | CSS Minifier (Toptal) | [https://www.toptal.com/developers/cssminifier](https://www.toptal.com/developers/cssminifier) |
-| **JavaScript** | JavaScript Minifier (Toptal) | [https://www.toptal.com/developers/javascript-minifier](https://www.toptal.com/developers/javascript-minifier) |
+```
+build: {
+    lib: {
+      entry: resolve(__dirname, 'src/script.js'),
+
+      name: 'rammf',
+      fileName: 'script',
+      cssFileName: 'style',
+      formats: ['es']
+    },
+    outDir: 'dist',
+    emptyOutDir: true,
+    
+    minify: 'terser',
+    terserOptions: {
+      compress: {
+        dead_code: false,
+        unused: false
+      }
+    },
+
+    rollupOptions: {
+      treeshake: false,
+      output: {
+        preserveModules: false,
+        inlineDynamicImports: true
+      }
+    }
+  }
+```
+
+Para hacer el set up correcto de Vite se deben usar los siguientes comandos:
+
+```
+> npm init -y
+> npm install vite --save-dev
+> npm install terser --save-dev
+> npm run build
+```
+
 
 Los archivos minificados generados son los que se encuentran en la carpeta `/dist` utilizados para la versión pública.
 
