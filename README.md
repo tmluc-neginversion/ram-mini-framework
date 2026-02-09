@@ -13,13 +13,13 @@ Puedes integrar el framework directamente desde **jsDelivr** usando las siguient
 <!-- CSS -->
 <link 
   rel="stylesheet" 
-  href="https://cdn.jsdelivr.net/gh/tmluc-neginversion/ram-mini-framework@v1.2.0/dist/style.css"
+  href="https://cdn.jsdelivr.net/gh/tmluc-neginversion/ram-mini-framework@v1.2.1/dist/style.css"
   crossorigin="anonymous">
 
 <!-- JS -->
 <script
   type="module"
-  src="https://cdn.jsdelivr.net/gh/tmluc-neginversion/ram-mini-framework@v1.2.0/dist/script.mjs"
+  src="https://cdn.jsdelivr.net/gh/tmluc-neginversion/ram-mini-framework@v1.2.1/dist/script.mjs"
   crossorigin="anonymous">
 </script>
 ```
@@ -43,20 +43,20 @@ sha384-7V7EhW6XFI+HJV4fm2lAHiVOJF84vAzL5WGj2XT9q/lc3KgrbpxyLO+8C/7REmoc
 
 **JS**
 ```
-sha384-zI9If6THONdnKxnsBOnD6DCPFOtSs0YcsFkjUfNSkuDPJdUm4ELyZhAwwBpyxVRY
+sha384-2dr5lb+4DxnPwR6gkxBpOFYUIjE95C3IxStXRhss33BSicpoIJsjsaTnX85ANA3/
 ```
 
 **Ejemplo de uso con SRI:**
 
 ```html
 <link rel="stylesheet"
-  href="https://cdn.jsdelivr.net/gh/tmluc-neginversion/ram-mini-framework@v1.2.0/dist/style.css"
+  href="https://cdn.jsdelivr.net/gh/tmluc-neginversion/ram-mini-framework@v1.2.1/dist/style.css"
   integrity="sha384-7V7EhW6XFI+HJV4fm2lAHiVOJF84vAzL5WGj2XT9q/lc3KgrbpxyLO+8C/7REmoc"
   crossorigin="anonymous">
 
 <script type="module"
-  src="https://cdn.jsdelivr.net/gh/tmluc-neginversion/ram-mini-framework@v1.2.0/dist/script.mjs"
-  integrity="sha384-zI9If6THONdnKxnsBOnD6DCPFOtSs0YcsFkjUfNSkuDPJdUm4ELyZhAwwBpyxVRY"
+  src="https://cdn.jsdelivr.net/gh/tmluc-neginversion/ram-mini-framework@v1.2.1/dist/script.mjs"
+  integrity="sha384-2dr5lb+4DxnPwR6gkxBpOFYUIjE95C3IxStXRhss33BSicpoIJsjsaTnX85ANA3/"
   crossorigin="anonymous">
 </script>
 ```
